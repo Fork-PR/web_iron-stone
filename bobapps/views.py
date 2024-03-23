@@ -13,7 +13,7 @@ def signup(request):
             return JsonResponse({'success': False, 'errors': form.errors}, status=400)
     else:
         form = UserCreationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'bobapps/signup.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -25,4 +25,4 @@ def user_login(request):
             return JsonResponse({'success': True, 'message': 'Login successful'})
         else:
             return JsonResponse({'success': False, 'message': 'Invalid credentials'}, status=401)
-    return render(request, 'registration/login.html')
+    return render(request, 'bobapps/login.html')

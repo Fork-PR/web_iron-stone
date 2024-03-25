@@ -35,16 +35,26 @@ def user_login(request):
             context = {
                 'username' : username,
                 'password' : password,
+                'success': True,
+                'message': 'Login successful',
             }
             #render에 context를 인자로 줘서 딕셔너리로 전달
             return JsonResponse(context)
         else:
             # 사용자가 존재하지 않을 때
             if not authenticate(username=username):
-                return JsonResponse({'message': '해당 ID가 없습니다.'}, status=401)
+                context = {
+                'success': False,
+                'message': '해당 ID가 없습니다.',
+                 }
+                return JsonResponse(context, status=401)
             # 비밀번호가 틀렸을 때
             elif not authenticate(username=username, password=password):
-                return JsonResponse({'message': '비밀번호가 틀렸습니다.'}, status=401)
+                context = {
+                'success': False,
+                'message': '비밀번호가 틀렸습니다.',
+                 }
+                return JsonResponse(context, status=401)
 
 
 def menuList(request):

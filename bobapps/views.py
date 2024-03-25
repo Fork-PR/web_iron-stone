@@ -8,6 +8,9 @@ import json
 def index(request):
         return render(request, 'index.html')
 
+def login_page(request):
+        return render(request, 'login_page.html')
+
 
 
 # 회원가입 미구현
@@ -28,6 +31,7 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             #로그인 하는 함수
             login(request, user)
@@ -55,6 +59,9 @@ def user_login(request):
                 'message': '비밀번호가 틀렸습니다.',
                  }
                 return JsonResponse(context, status=401)
+    else:
+        return render(request, 'index.html')
+
 
 
 def menuList(request):

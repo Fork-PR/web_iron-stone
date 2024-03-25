@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  fetch("http://127.0.0.1:8000/bobapps/menuList")
+  fetch("http://127.0.0.1:8000/bobapps/menuList/")
     .then((response) => response.json())
     .then((data) => getMenuList(data))
     .catch((error) =>
@@ -36,7 +36,7 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
     const formData = new FormData(this);
-    fetch("http://127.0.0.1:8000/bobapps/login/", {
+    fetch("http://127.0.0.1:8000/bobapps/user_login/", {
       method: "POST",
       body: formData,
     })
@@ -45,7 +45,7 @@ document
         if (data.success) {
           const info = { id: data.username, pw: data.password };
           localStorage.setItem("user", JSON.stringify(info));
-          window.location.href = `http://127.0.0.1:8000/bobapps/loginPage/`;
+          window.location.href = `http://127.0.0.1:8000/bobapps/login_page/`;
         } else {
           const failMessage = document.getElementById('fail-message');
           failMessage.innerText = data.message

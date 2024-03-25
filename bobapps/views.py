@@ -36,11 +36,23 @@ def user_login(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
+            #로그인 하는 함수
             login(request, user)
-            #redirect 함수를 통해 원하는 html 파일로 이동(.html안써도 됨, id 와 pw도 같이 보냄)
-            return redirect('이동할 페이지', username=username, password=password)
+            #아이디와 비밀번호를 딕셔너리로 정리
+            context = {
+                'username' : username,
+                'password' : password,
+            }
+            #render에 context를 인자로 줘서 딕셔너리로 전달
+            return render(request, '이동할 템플릿.html', context)
         else:
-            return render(request, 'index.html', {'message': 'Invalid credentials'}, status=401)
+            # 사용자가 존재하지 않을 때
+            if not authenticate(username=username):
+                return render(request, 'index.html', {'message': '해당 ID가 없습니다.'})
+            # 비밀번호가 틀렸을 때
+            elif not authenticate(username=username, password=password):
+                return render(request, 'index.html', {'message': '비밀번호가 틀렸습니다.'})
+
 
 def menuList(request):
     # 정적 파일 데이터 경로(없으면 None을 반환)

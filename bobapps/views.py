@@ -31,6 +31,7 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             #로그인 하는 함수
             login(request, user)

@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.staticfiles import finders
 import json
+from .models import CustomUser
 
 def index(request):
         return render(request, 'index.html')
@@ -32,6 +33,10 @@ def user_login(request):
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
 
+        # print(username)
+        # if username == 'redstone':
+        #     user = 'sdfd'
+        # print(user)
         if user is not None:
             #로그인 하는 함수
             login(request, user)
@@ -46,18 +51,20 @@ def user_login(request):
             return JsonResponse(context)
         else:
             # 사용자가 존재하지 않을 때
-            if not authenticate(username=username):
+            if not CustomUser.objects.filter(username=username).exists():
                 context = {
                 'success': False,
                 'message': '해당 ID가 없습니다.',
                  }
+
                 return JsonResponse(context, status=401)
             # 비밀번호가 틀렸을 때
-            elif not authenticate(username=username, password=password):
+            else:
                 context = {
                 'success': False,
                 'message': '비밀번호가 틀렸습니다.',
                  }
+
                 return JsonResponse(context, status=401)
     else:
         return render(request, 'index.html')

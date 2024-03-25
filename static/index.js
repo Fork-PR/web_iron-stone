@@ -11,8 +11,6 @@ function getMenuList(data) {
   data.menu.forEach((item) => {
     menu_type = item.menu_course_type;
     const container = document.getElementById(menu_type);
-    const div = document.createElement("div");
-
     const menu_list = setMenu(item.set_menu_name);
     container.appendChild(menu_list);
   });
@@ -32,3 +30,29 @@ function setMenu(data) {
 
   return container;
 }
+
+document
+  .getElementById("login-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch("http://127.0.0.1:8000/bobapps/login/", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          const info = { id: data.username, pw: data.password };
+          localStorage.setItem("user", JSON.stringify(info));
+          window.location.href = `http://127.0.0.1:8000/bobapps/loginPage/`;
+        } else {
+          const failMessage = document.getElementById('fail-message');
+          failMessage.innerText = data.message
+          console.log("Login failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });

@@ -40,6 +40,13 @@
   border-radius: 7px;
 }
 
+#fail-message {
+  text-align: center;
+  opacity: 70%;
+  font-weight: 700;
+  color: red;
+}
+
 /* 왼쪽 로고 작업 */
 .logo-wrap {
   justify-content: flex-start;

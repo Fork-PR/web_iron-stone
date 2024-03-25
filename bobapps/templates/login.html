@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
+    />
+    <title>SSAFY Lunch</title>
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <header>
+      <div class="blue-line"></div>
+    </header>
+
+    <!-- 메인 -->
+
+    <main class="wrap-col">
+      <div class="main-text">
+        <p class="text"><span id="id"></span>님, 3반에 오신 것을 환영합니다</p>
+        <p class="text"><span id="password"></span>가 안들키게 조심해 주세요</p>
+      </div>
+      <div class="home-btn">
+        <a class="home-text" href="{% url 'bobapps:index' %}"
+          >홈으로 돌아가기</a
+        >
+      </div>
+    </main>
+    <script src="{% static 'login.js' %}"></script>
+  </body>
+</html>

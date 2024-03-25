@@ -37,10 +37,11 @@
                 method="POST"
               >
                 {% csrf_token %}
-                <input class="input-box" type="text" placeholder="아이디" />
+                <input class="input-box" type="text" name="username" placeholder="아이디" />
                 <input
                   class="input-box"
                   type="password"
+                  name="password"
                   placeholder="비밀번호"
                 />
                 <p id="fail-message"></p>

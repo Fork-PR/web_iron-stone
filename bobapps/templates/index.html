@@ -4,7 +4,7 @@
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="{% static 'src/css/index.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
@@ -36,12 +36,15 @@
                 action="#"
                 method="POST"
               >
-                <input class="input-box" type="text" placeholder="아이디" />
+                {% csrf_token %}
+                <input class="input-box" type="text" name="username" placeholder="아이디" />
                 <input
                   class="input-box"
                   type="password"
+                  name="password"
                   placeholder="비밀번호"
                 />
+                <p id="fail-message"></p>
                 <button
                   type="submit"
                   form="login-form"

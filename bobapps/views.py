@@ -4,9 +4,13 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.staticfiles import finders
 import json
+from .models import CustomUser
 
 def index(request):
         return render(request, 'index.html')
+
+def login_page(request):
+        return render(request, 'login_page.html')
 
 
 
@@ -28,6 +32,11 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+
+        # print(username)
+        # if username == 'redstone':
+        #     user = 'sdfd'
+        # print(user)
         if user is not None:
             #로그인 하는 함수
             login(request, user)
@@ -35,16 +44,31 @@ def user_login(request):
             context = {
                 'username' : username,
                 'password' : password,
+                'success': True,
+                'message': 'Login successful',
             }
             #render에 context를 인자로 줘서 딕셔너리로 전달
             return JsonResponse(context)
         else:
             # 사용자가 존재하지 않을 때
-            if not authenticate(username=username):
-                return JsonResponse({'message': '해당 ID가 없습니다.'}, status=401)
+            if not CustomUser.objects.filter(username=username).exists():
+                context = {
+                'success': False,
+                'message': '해당 ID가 없습니다.',
+                 }
+
+                return JsonResponse(context, status=401)
             # 비밀번호가 틀렸을 때
-            elif not authenticate(username=username, password=password):
-                return JsonResponse({'message': '비밀번호가 틀렸습니다.'}, status=401)
+            else:
+                context = {
+                'success': False,
+                'message': '비밀번호가 틀렸습니다.',
+                 }
+
+                return JsonResponse(context, status=401)
+    else:
+        return render(request, 'index.html')
+
 
 
 def menuList(request):

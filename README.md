@@ -17,40 +17,50 @@
  - python 3.9.13
 
 
-
-## Tech Stack
+## TECH
  ### Backend
 
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"/><img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white"/>
 
 ### Frontend
 
-  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/><img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"/>
 
 
 
 
 ## 사용 방법
 ```python
-# 가상환경에서 필수 라이브러리 설치
+# 1. 가상환경에서 필수 라이브러리 설치
 pip install -r requirements.txt
 
-# DB 마이그레이션
+# 2. DB 마이그레이션
 python manage.py makemigrations
 python manage.py migrate
 
-# 서버 on
+# 3. 서버 실행
 python manage.py runserver
 
-# index URL
+# 4. Root Url
 localhost:8000/bobapps
 
 ```
 
 
+## 주요 기능
+
+### Frontend
+- 페이지 디자인
+- addEventListener()로 페이지 로딩시 식단리스트 요청
+- form을 이용해 로그인 시 POST요청으로 로그인 정보를 보내고, 응답결과를 처리
+
+### Backend
+
+
+
+## 문서
+ - [Commit 컨벤션](./docs/GIT_convention)
+ - [API 명세서](./docs/URL_LIST)
 
 
 

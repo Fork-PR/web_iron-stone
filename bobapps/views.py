@@ -106,16 +106,19 @@ def save_menu(request):
         sub_menus = request.POST.getlist('sub_menus')
 
         # Menu 객체 생성
-        menu = Menu.objects.create(date=date, menu_type=menu_type, main_dish=main_dish)
+        menu, create = Menu.objects.get_or_create(date=date, menu_type=menu_type, main_dish=main_dish)
 
         # 서브 메뉴를 추가합니다.
         for sub_menu_name in sub_menus:
             #created는 서브메뉴가 생성 되었는지 여부를 나타낸다.(bool값)
-            sub_menu, created = SubMenu.objects.get_or_create(name=sub_menu_name)
+            # sub_menu, created = SubMenu.objects.get_or_create(name=sub_menu_name)
+            #
+            sub_menu = SubMenu.objects.get_or_create(name=sub_menu_name)
             menu.sub_menus.add(sub_menu)
-
-
-        return render(request, 'menu_form.html')
+        if create==True:
+            return render(request, 'menu_form.html', {'message': '메뉴가 추가되었습니다.'})
+        else:
+            return render(request, 'menu_form.html', {'message': '메뉴 추가에 실패했습니다.'})
     else:
 
         return render(request, 'menu_form.html')

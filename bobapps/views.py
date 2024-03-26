@@ -102,7 +102,7 @@ def save_menu(request):
         date = request.POST.get('date')
         menu_type = request.POST.get('menu_type')
         main_dish = request.POST.get('main_dish')
-        # 서브 메뉴는 여러 개일 수 있으므로 리스트로 받아옵니다.
+        # 서브 메뉴는 여러 개일 수 있으므로 리스트로 받음
         sub_menus = request.POST.getlist('sub_menus')
 
         # Menu 객체 생성
@@ -114,8 +114,8 @@ def save_menu(request):
             sub_menu, created = SubMenu.objects.get_or_create(name=sub_menu_name)
             menu.sub_menus.add(sub_menu)
 
-        # 필요한 처리 후 redirect
+
         return render(request, 'menu_form.html')
     else:
-        # GET 요청을 받았을 때 처리
+
         return render(request, 'menu_form.html')

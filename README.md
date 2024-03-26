@@ -59,8 +59,8 @@ localhost:8000/bobapps
 
 
 ## 문서
- - [Commit 컨벤션](./docs/GIT_convention)
- - [API 명세서](./docs/API_DOCS)
+ - [Commit 컨벤션](./docs/GIT_CONVENTION.md)
+ - [API 명세서](./docs/API_DOCS.md)
 
 
 

@@ -9,6 +9,7 @@ urlpatterns = [
     path('user_login/', views.user_login, name='user_login'),
     path('menuList/', views.menuList, name='menuList'),
     path('', views.index, name='index'),
-    path('login_page/', views.login_page, name='login_page')
+    path('login_page/', views.login_page, name='login_page'),
+    path('save_menu/', views.save_menu, name='save_menu')
     # other urls...
 ]

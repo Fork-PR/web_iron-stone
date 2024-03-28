@@ -90,11 +90,12 @@ def menuList(request):
                 'menu_course_type': menu_query.menu_course_type,
                 'main_dish': menu_query.main_dish,
                 'sub_menus': [submenu.name for submenu in menu_query.sub_menus.all()],  # 서브 메뉴들을 리스트로 가져옴
-                'success': True
+
             }
             menu_data.append(context)
         context = {
-            'menu_data':menu_data
+            'menu_data':menu_data,
+            'success': True,
         }
         # JSON 응답 반환
         return JsonResponse(context, status=200)

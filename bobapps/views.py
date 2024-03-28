@@ -97,7 +97,7 @@ def menuList(request):
     # 메시지와 함께 에러 코드를 반환
     except Menu.DoesNotExist:
         context = {
-            'message' : '해당 날짜에 메뉴가 없습니다',
+            'message' : '해당 날짜에 메뉴가 없습니다.',
             'success' : False
 
 
@@ -126,8 +126,16 @@ def save_menu(request):
             sub_menu, sub_create = SubMenu.objects.get_or_create(name=sub_menu_name)
             menu.sub_menus.add(sub_menu)
         if create==True:
-            return render(request, 'menu_form.html', {'message': '메뉴가 추가되었습니다.'})
+            context = {
+            'message' : '메뉴가 추가되었습니다.',
+            'success' : True
+            }
+            return JsonResponse(context, status=200)
         else:
-            return render(request, 'menu_form.html', {'message': '메뉴 추가에 실패했습니다.'})
+            context = {
+            'message' : '메뉴 추가에 실패했습니다.',
+            'success' : False
+            }
+            return JsonResponse(context, status=400)
     else:
         return render(request, 'menu_form.html')

@@ -1,14 +1,7 @@
-.blue-line {
-  width: 100vw;
-  height: 20px;
-  background-color: #0275d8;
-}
 
-.container {
+
+.content-wrap {
   display: flex;
-
-  margin: 0 auto;
-  height: 98vh;
   width: 1128px;
   justify-content: space-between;
   align-items: center;

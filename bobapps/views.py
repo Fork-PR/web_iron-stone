@@ -80,17 +80,22 @@ def menuList(request):
     try:
         # 요청된 날짜에 해당하는 메뉴를 데이터베이스에서 가져옴
         # 실패 시 excpet로 이동
-        menu = Menu.objects.get(date=requested_datetime)
+        menu = Menu.objects.filter(date=requested_datetime)
         
         # 메뉴 데이터를 JSON 형식으로 변환하여 반환
+        menu_data = []
+        for menu_query in menu:
+            context = {
+                'date': menu_query.date,
+                'menu_course_type': menu_query.menu_course_type,
+                'main_dish': menu_query.main_dish,
+                'sub_menus': [submenu.name for submenu in menu_query.sub_menus.all()],  # 서브 메뉴들을 리스트로 가져옴
+                'success': True
+            }
+            menu_data.append(context)
         context = {
-            'date': menu.date,
-            'menu_course_type': menu.menu_course_type,
-            'main_dish': menu.main_dish,
-            'sub_menus': [submenu.name for submenu in menu.sub_menus.all()],  # 서브 메뉴들을 리스트로 가져옴
-            'success': True
+            'menu_data':menu_data
         }
-        
         # JSON 응답 반환
         return JsonResponse(context, status=200)
     # 해낭 날짜에 메뉴가 없다면 Menu.DoesNotExist 클래스로 예외 처리

@@ -1,97 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {% load static %}
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'src/css/index.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
-    />
-    <title>SSAFY Lunch</title>
-  </head>
-  <body>
-    <div class="content wrap-col">
-      <header>
-        <div class="blue-line"></div>
-      </header>
+{% extends "base.html" %}
+{% load static %}
 
-      <main>
-        <div class="container">
-          <div class="login wrap-col">
-            <!-- 로그인 -->
-            <div class="logo">
-              <div class="wrap logo-wrap">
-                <p class="logo-main">SAFFY</p>
-                <p class="logo-sub">싸피인</p>
-              </div>
-            </div>
+{% block style %}
+  <link rel="stylesheet" href="{% static 'bobapps/css/index.css' %}" />
+{% endblock style %}
 
-            <!-- 로그인폼 -->
-            <div class="form-container">
-              <form
-                id="login-form"
-                class="form wrap-col"
-                action="#"
-                method="POST"
-              >
-                {% csrf_token %}
-                <input class="input-box" type="text" name="username" placeholder="아이디" />
-                <input
-                  class="input-box"
-                  type="password"
-                  name="password"
-                  placeholder="비밀번호"
-                />
-                <p id="fail-message"></p>
-                <button
-                  type="submit"
-                  form="login-form"
-                  class="input-box submit-btn"
-                >
-                  <span class="login-text">로그인</span>
-                </button>
-              </form>
-            </div>
-          </div>
-
-          <!-- 오른쪽 메뉴 -->
-          <div class="menu">
-            <!-- 층별 메뉴 -->
-            <div class="floor-wrap">
-              <p class="floor-mainText">20F</p>
-              <div class="wrap">
-                <!-- 메뉴 타입 -->
-                <div class="menu-type">
-                  <p class="floor-subText">한식</p>
-                  <ul id="L1" class="menu-list"></ul>
-                </div>
-                <!-- 메뉴 타입 -->
-                <div class="menu-type">
-                  <p class="floor-subText">양식</p>
-                  <ul id="L2" class="menu-list"></ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- 층별 메뉴 -->
-            <div class="floor-wrap">
-              <p class="floor-mainText">10F</p>
-              <div class="wrap">
-                <!-- 메뉴 타입 -->
-                <div class="menu-type">
-                  <p class="floor-subText">도시락</p>
-                  <ul id="L3" class="menu-list"></ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <footer></footer>
+{% block content %}
+<div class="content-wrap">
+  <div class="login wrap-col">
+    <!-- 로그인 -->
+    <div class="logo">
+      <div class="wrap logo-wrap">
+        <p class="logo-main">SAFFY</p>
+        <p class="logo-sub">싸피인</p>
+      </div>
     </div>
 
-    <script src="{% static 'index.js' %}"></script>
-  </body>
-</html>
+    <!-- 로그인폼 -->
+    <div class="form-container">
+      <form
+        id="login-form"
+        class="form wrap-col"
+        action="#"
+        method="POST"
+      >
+        {% csrf_token %}
+        <input class="input-box" type="text" name="username" placeholder="아이디" />
+        <input
+          class="input-box"
+          type="password"
+          name="password"
+          placeholder="비밀번호"
+        />
+        <p id="fail-message"></p>
+        <button
+          type="submit"
+          form="login-form"
+          class="input-box submit-btn"
+        >
+          <span class="login-text">로그인</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 오른쪽 메뉴 -->
+  <div class="menu">
+    <!-- 층별 메뉴 -->
+    <div class="floor-wrap">
+      <p class="floor-mainText">20F</p>
+      <div class="wrap">
+        <!-- 메뉴 타입 -->
+        <div class="menu-type">
+          <p class="floor-subText">한식</p>
+          <ul id="한식" class="menu-list"></ul>
+        </div>
+        <!-- 메뉴 타입 -->
+        <div class="menu-type">
+          <p class="floor-subText">일품</p>
+          <ul id="일품" class="menu-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 층별 메뉴 -->
+    <div class="floor-wrap">
+      <p class="floor-mainText">10F</p>
+      <div class="wrap">
+        <!-- 메뉴 타입 -->
+        <div class="menu-type">
+          <p class="floor-subText">단품</p>
+          <ul id="단품" class="menu-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+
+
+{% block js %}
+<script src="{% static 'bobapps/js/index.js' %}"></script>
+{% endblock js %}

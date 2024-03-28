@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'bobapps/css/menu_form.css' %}" />
+{% endblock style %}
+
+
+{% block content %}
+<form id="menu-form" class="form-wrap">
+  {%csrf_token%}
+  <div class="date-wrap">
+    <input type="date" name="date" />
+  </div>
+
+  <!-- 인풋값 -->
+  <div class="input-container">
+    <!-- 메뉴 타입 선택 -->
+    <div class="input-wrap">
+      <label class="input-title" for="menu_type">메뉴 타입</label>
+      <select id="menu_type" name="menu_course_type">
+        <option value="한식">한식</option>
+        <option value="일품">일품</option>
+        <option value="단품">단품</option>
+      </select>
+    </div>
+    <!-- 주 메뉴 -->
+    <div class="input-wrap">
+      <label class="input-title" for="main_dish">주 메뉴</label>
+      <input id="main_dish" type="text" name="main_dish" />
+    </div>
+    <!-- 서브 메뉴 -->
+    <div class="input-wrap">
+      <label class="input-title" for="sub_menus">서브 메뉴</label>
+      <div id="add-wrap" class="add-wrap">
+        <div>
+          <input
+            id="add-menu"
+            class="add-menu"
+            type="text"
+            name="sub_menus"
+          />
+          <button id="add_subMenu" class="btn-none">추가</button>
+        </div>
+        <!-- 추가되는 요소 -->
+      </div>
+    </div>
+    <p class="fail-message"></p>
+    <p class="success-message"></p>
+    <div class="input-wrap">
+      <input
+        class="input-title btn-none"
+        type="submit"
+        value="저장하기"
+      />
+    </div>
+  </div>
+</form>
+{% endblock content %}
+
+{% block js %}
+  <script src="{% static 'bobapps/js/menu.js' %}"></script>
+{% endblock js %}

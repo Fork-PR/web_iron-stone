@@ -1,15 +1,8 @@
-.blue-line {
-  width: 100vw;
-  height: 20px;
-  background-color: #0275d8;
-}
-
 .wrap-col {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 95vh;
 }
 
 /* 텍스트 */

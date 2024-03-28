@@ -120,6 +120,7 @@
 
 .menu-type {
   box-sizing: border-box;
+  width: 170px;
   height: 100%;
   font-size: 14px;
   font-weight: 700px;

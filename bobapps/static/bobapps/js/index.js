@@ -31,7 +31,9 @@ function handleLoginForm(event) {
 }
 
 function handleMenuList() {
-  fetch("http://127.0.0.1:8000/bobapps/menuList/")
+  fetch(`http://127.0.0.1:8000/bobapps/menuList?date=${getCurDate()}`, {
+    method: 'GET',
+  })
   .then((response) => response.json())
   .then((data) => getMenuList(data))
   .catch((error) =>
@@ -40,23 +42,36 @@ function handleMenuList() {
 }
 
 function getMenuList(data) {
-  data.menu.forEach((item) => {
-    menu_type = item.menu_course_type;
+  data.menu_data.forEach((item) => {
+    console.log(item)
+    const menu_type = item.menu_course_type;
     const container = document.getElementById(menu_type);
-    const menu_list = setMenu(item.set_menu_name);
-    container.appendChild(menu_list);
+    // const menu_list = setMenu(item);
+    // container.appendChild(menu_list);
+    const div = document.createElement("div");
+    div.appendChild(setMenu(item.main_dish));
+    item.sub_menus.forEach((menu) => {
+      div.appendChild(setMenu(menu));
+    })
+    // div.appendChild(listItem);
+    // container.setMenu(menu);
+    container.appendChild(div);
   });
 }
 
 function setMenu(data) {
-  const container = document.createElement("div");
-  data.forEach((menu) => {
-    const listItem = document.createElement("li");
-    const spanElement = document.createElement("span");
-    spanElement.classList.add("menu-text");
-    spanElement.innerText = menu;
-    listItem.appendChild(spanElement);
-    container.appendChild(listItem);
-  });
-  return container;
+  const listItem = document.createElement("li");
+  const spanElement = document.createElement("span");
+  spanElement.classList.add("menu-text");
+  spanElement.innerText = data;
+  listItem.appendChild(spanElement);
+  return listItem;
+}
+
+function getCurDate(){
+  const currentDate = new Date()
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`
 }

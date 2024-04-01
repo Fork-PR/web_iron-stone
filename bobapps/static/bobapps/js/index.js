@@ -1,13 +1,13 @@
 document
-.getElementById("login-form")
-.addEventListener("submit", handleLoginForm);
+  .getElementById("login-form")
+  .addEventListener("submit", handleLoginForm);
 
 document.addEventListener("DOMContentLoaded", handleMenuList);
 
 function handleLoginForm(event) {
   event.preventDefault();
   const formData = new FormData(this);
-  fetch("http://127.0.0.1:8000/bobapps/user_login/", {
+  fetch("https://web-iron-stone.vercel.app/bobapps/user_login/", {
     method: "POST",
     body: formData,
   })
@@ -16,34 +16,37 @@ function handleLoginForm(event) {
       if (data.success) {
         const info = { id: data.username, pw: data.password };
         localStorage.setItem("user", JSON.stringify(info));
-        window.location.href = `http://127.0.0.1:8000/bobapps/login_page/`;
+        window.location.href = `https://web-iron-stone.vercel.app/bobapps/login_page/`;
       } else {
-        const failMessage = document.getElementById('fail-message');
-        failMessage.innerText = data.message
+        const failMessage = document.getElementById("fail-message");
+        failMessage.innerText = data.message;
         console.log("Login failed");
       }
     })
     .catch((error) => {
-      const failMessage = document.getElementById('fail-message');
-      failMessage.innerText = data.message
+      const failMessage = document.getElementById("fail-message");
+      failMessage.innerText = data.message;
       console.error("Error:", error);
     });
 }
 
 function handleMenuList() {
-  fetch(`http://127.0.0.1:8000/bobapps/menuList?date=${getCurDate()}`, {
-    method: 'GET',
-  })
-  .then((response) => response.json())
-  .then((data) => getMenuList(data))
-  .catch((error) =>
+  fetch(
+    `https://web-iron-stone.vercel.app/bobapps/menuList?date=${getCurDate()}`,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => getMenuList(data))
+    .catch((error) =>
       console.error("데이터를 불러오는 중 오류가 발생했습니다:", error)
     );
 }
 
 function getMenuList(data) {
   data.menu_data.forEach((item) => {
-    console.log(item)
+    console.log(item);
     const menu_type = item.menu_course_type;
     const container = document.getElementById(menu_type);
     // const menu_list = setMenu(item);
@@ -52,7 +55,7 @@ function getMenuList(data) {
     div.appendChild(setMenu(item.main_dish));
     item.sub_menus.forEach((menu) => {
       div.appendChild(setMenu(menu));
-    })
+    });
     // div.appendChild(listItem);
     // container.setMenu(menu);
     container.appendChild(div);
@@ -68,10 +71,10 @@ function setMenu(data) {
   return listItem;
 }
 
-function getCurDate(){
-  const currentDate = new Date()
+function getCurDate() {
+  const currentDate = new Date();
   const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`
+  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+  const day = String(currentDate.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }

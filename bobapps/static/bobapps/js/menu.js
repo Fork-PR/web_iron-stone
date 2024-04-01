@@ -29,7 +29,7 @@ function handleMenuSubmit(event) {
 }
 
 function fetch_menu(formData) {
-  fetch("http://127.0.0.1:8000/bobapps/save_menu/", {
+  fetch("https://web-iron-stone.vercel.app/bobapps/save_menu/", {
     method: "POST",
     body: formData,
   })

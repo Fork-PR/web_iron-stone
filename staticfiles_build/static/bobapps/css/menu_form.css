@@ -1,0 +1,90 @@
+.btn-none {
+  box-sizing: border-box;
+  border: #0275d8;
+  color: white;
+  opacity: 70%;
+  background-color: #0275d8;
+}
+
+.btn-none:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.fail-message {
+  text-align: center;
+  opacity: 70%;
+  color: red;
+  padding: 8px 0;
+}
+
+/* 폼 디자인 */
+
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 날짜 input */
+.form-wrap .date-wrap {
+  box-sizing: border-box;
+  background-color: #ced4da;
+  width: 140px;
+  padding: 6px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+/* 인풋 컨테이너 */
+.form-wrap .input-container {
+  padding: 10px;
+  width: 400px;
+  width: 36rem;
+  box-sizing: border-box;
+  font-weight: 700;
+  border: 1px solid #ced4da;
+  border-top-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+/* 인풋 개별 wrap */
+.form-wrap .input-container .input-wrap {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+/* 왼쪽 타이틀 */
+.form-wrap .input-container .input-wrap .input-title {
+  text-align: center;
+  width: 9.375rem;
+  padding: 10px 0;
+  align-self: flex-start;
+}
+
+/* 주메뉴 인풋 */
+.form-wrap .input-container .input-wrap #main_dish {
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  outline: none;
+}
+
+.form-wrap .input-container .input-wrap .add-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-wrap .input-container .input-wrap .add-wrap .add-menu {
+  padding: 10px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+}
+
+.form-wrap .input-container .input-wrap .checkbox {
+  margin: 0.5rem;
+}

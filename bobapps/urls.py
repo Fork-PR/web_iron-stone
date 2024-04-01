@@ -16,4 +16,4 @@ urlpatterns = [
     # other urls...
 ]
 
-urlpatterns += static(settings.STATIC_URL, domcument_root=settings.STATIC_ROOT)
+

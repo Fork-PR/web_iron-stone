@@ -1,5 +1,7 @@
 from django.urls import path
 from bobapps import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'bobapps'
 urlpatterns = [
@@ -13,3 +15,5 @@ urlpatterns = [
     path('save_menu/', views.save_menu, name='save_menu')
     # other urls...
 ]
+
+urlpatterns += static(settings.STATIC_URL, domcument_root=settings.STATIC_ROOT)

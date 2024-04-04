@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'ssbap.wsgi.app'
 DATABASES = {
     'default': {
         'ENGINE': os.environ['ENGINE'],
-        'HOST': os.environ['POSTGRES_HOST'],
-        'NAME': os.environ['POSTGRES_DATABASE'],
-        'USER': os.environ['POSTGRES_USER'],
-        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': os.environ['HOST'],
+        'NAME': os.environ['NAME'],
+        'USER': os.environ['USER'],
+        'PASSWORD': os.environ['PASSWORD'],
         'PORT': os.environ['PORT'],
     }
 }
